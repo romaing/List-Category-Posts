@@ -56,8 +56,13 @@ class ListCategoryPostsWidget extends WP_Widget{
 
     if($title == 'catlink'){
       //if the user has setup 'catlink' as the title, replace it with the category link:
-      $lcp_category = get_category($category_id);
-      $title = '<a href="' . get_category_link($lcp_category->cat_ID) . '">' . $lcp_category->name . '</a>';
+      //romain
+      //$lcp_category = get_category($category_id);
+      //$title = '<a href="' . get_category_link($lcp_category->cat_ID) . '">' . $lcp_category->name . '</a>';
+      global $post;
+      $categories = get_the_category($post->ID);
+      $lcp_category = $categories[0];
+      $title = '<h3>' . $lcp_category->name . '</h3>';
     }
     echo $before_title . $title . $after_title;
 
@@ -82,7 +87,6 @@ class ListCategoryPostsWidget extends WP_Widget{
     $instance['show_excerpt'] = strip_tags($new_instance['show_excerpt']);
     $instance['excerpt_size'] = strip_tags($new_instance['excerpt_size']);
     $instance['show_author'] = strip_tags($new_instance['show_author']);
-    $instance['show_catlink'] = strip_tags($new_instance['show_catlink']);
     $instance['show_catlink'] = strip_tags($new_instance['show_catlink']);
     $instance['thumbnail'] = strip_tags($new_instance['thumbnail']);
     $instance['thumbnail_size'] = strip_tags($new_instance['thumbnail_size']);

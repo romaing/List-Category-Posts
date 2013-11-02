@@ -8,6 +8,9 @@
 class CatList{
   private $params = array();
   private $lcp_category_id = 0;
+  //romain
+  private $lcp_category_post_type = 'post';
+  //
   private $category_param;
 
   /**
@@ -34,6 +37,9 @@ class CatList{
       $args = array('cat'=> $this->lcp_category_id);
     endif;
 
+    //romain
+    $args['post_type'] = get_post_type( get_the_ID() ) ; 
+    //
     $args = array_merge($args, array(
       'numberposts' => $this->params['numberposts'],
       'orderby' => $this->params['orderby'],
@@ -171,7 +177,9 @@ class CatList{
 
   public function lcp_get_current_category(){
     $category = get_category( get_query_var( 'category' ) );
-    if(isset($category->errors) && $category->errors["invalid_term"][0] == "Empty Term"):
+    //romain
+    //if(isset($category->errors) && $category->errors["invalid_term"][0] == "Empty Term" ):
+    if(isset($category->errors) && $category->errors["invalid_term"][0] == __("Empty Term") ):
       global $post;
       $categories = get_the_category($post->ID);
       return $categories[0]->cat_ID;

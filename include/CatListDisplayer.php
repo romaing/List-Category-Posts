@@ -66,7 +66,12 @@ class CatListDisplayer {
         $this->lcp_output .= $this->get_category_link($this->params['catlink_tag']);
       endif;
     else:
+      //romain
       $this->lcp_output .= $this->get_category_link("strong");
+      //global $post;
+      //$categories = get_the_category($post->ID);
+      //$this->lcp_output .= '<h3>'.$categories[0]->name .'</h3>';
+      ///
     endif;
 
     $this->lcp_output .= '<' . $tag;
