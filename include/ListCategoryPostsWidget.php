@@ -61,8 +61,12 @@ class ListCategoryPostsWidget extends WP_Widget{
       //$title = '<a href="' . get_category_link($lcp_category->cat_ID) . '">' . $lcp_category->name . '</a>';
       global $post;
       $categories = get_the_category($post->ID);
-      $lcp_category = $categories[0];
-      $title = '<h3>' . $lcp_category->name . '</h3>';
+      if( !empty($categories[0]) ){
+        $lcp_category = $categories[0];
+        $title = '<h3>' . $lcp_category->name . '</h3>';
+      }else{
+        $title = '';
+      }
     }
     echo $before_title . $title . $after_title;
 
